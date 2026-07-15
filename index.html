@@ -9,7 +9,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
 </head>
-<body data-weather="default" data-time="day">
+<body data-weather="default" data-time="day" data-layout="landing">
 
   <div class="sky" aria-hidden="true">
     <div class="sky__body"></div>
@@ -58,42 +58,47 @@
       <p class="state__text">Search a city to get its current conditions and a five‑day outlook.</p>
     </section>
 
-    <!-- Current conditions -->
-    <section class="current" id="current-panel" hidden>
-      <div class="current__primary">
-        <p class="current__place" id="current-place">—</p>
-        <p class="current__temp"><span id="current-temp">0</span>&deg;<span id="current-unit">C</span></p>
-        <p class="current__condition" id="current-condition">—</p>
+    <!-- Weather card: appears once a search returns results -->
+    <section class="weather-card" id="weather-card" hidden>
+
+      <!-- Current conditions -->
+      <div class="current">
+        <div class="current__primary">
+          <p class="current__place" id="current-place">—</p>
+          <p class="current__temp"><span id="current-temp">0</span>&deg;<span id="current-unit">C</span></p>
+          <p class="current__condition" id="current-condition">—</p>
+        </div>
+
+        <dl class="readout">
+          <div class="readout__item">
+            <dt>Feels like</dt>
+            <dd><span id="current-feels">0</span>&deg;</dd>
+          </div>
+          <div class="readout__item">
+            <dt>Humidity</dt>
+            <dd><span id="current-humidity">0</span>%</dd>
+          </div>
+          <div class="readout__item">
+            <dt>Wind</dt>
+            <dd><span id="current-wind">0</span> m/s</dd>
+          </div>
+          <div class="readout__item">
+            <dt>Sunrise</dt>
+            <dd id="current-sunrise">—</dd>
+          </div>
+          <div class="readout__item">
+            <dt>Sunset</dt>
+            <dd id="current-sunset">—</dd>
+          </div>
+        </dl>
       </div>
 
-      <dl class="readout">
-        <div class="readout__item">
-          <dt>Feels like</dt>
-          <dd><span id="current-feels">0</span>&deg;</dd>
-        </div>
-        <div class="readout__item">
-          <dt>Humidity</dt>
-          <dd><span id="current-humidity">0</span>%</dd>
-        </div>
-        <div class="readout__item">
-          <dt>Wind</dt>
-          <dd><span id="current-wind">0</span> m/s</dd>
-        </div>
-        <div class="readout__item">
-          <dt>Sunrise</dt>
-          <dd id="current-sunrise">—</dd>
-        </div>
-        <div class="readout__item">
-          <dt>Sunset</dt>
-          <dd id="current-sunset">—</dd>
-        </div>
-      </dl>
-    </section>
+      <!-- Forecast strip -->
+      <div class="forecast">
+        <p class="forecast__label">Five-day outlook</p>
+        <div class="forecast__strip" id="forecast-strip"></div>
+      </div>
 
-    <!-- Forecast strip -->
-    <section class="forecast" id="forecast-panel" hidden>
-      <p class="forecast__label">Five-day outlook</p>
-      <div class="forecast__strip" id="forecast-strip"></div>
     </section>
 
     <footer class="app__footer">

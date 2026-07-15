@@ -26,8 +26,7 @@ const errorState = document.getElementById("error-state");
 const errorText = document.getElementById("error-text");
 const emptyState = document.getElementById("empty-state");
 
-const currentPanel = document.getElementById("current-panel");
-const forecastPanel = document.getElementById("forecast-panel");
+const weatherCard = document.getElementById("weather-card");
 const forecastStrip = document.getElementById("forecast-strip");
 
 // ---- Event listeners -----------------------------------------
@@ -116,8 +115,8 @@ function renderWeather(current, forecast) {
   emptyState.hidden = true;
   errorState.hidden = true;
   loadingState.hidden = true;
-  currentPanel.hidden = false;
-  forecastPanel.hidden = false;
+  weatherCard.hidden = false;
+  document.body.setAttribute("data-layout", "results");
 }
 
 function renderForecast(forecast) {
@@ -192,8 +191,7 @@ function showLoading() {
   loadingState.hidden = false;
   errorState.hidden = true;
   emptyState.hidden = true;
-  currentPanel.hidden = true;
-  forecastPanel.hidden = true;
+  weatherCard.hidden = true;
 }
 
 function showError(message) {
@@ -201,6 +199,5 @@ function showError(message) {
   errorState.hidden = false;
   loadingState.hidden = true;
   emptyState.hidden = true;
-  currentPanel.hidden = true;
-  forecastPanel.hidden = true;
+  weatherCard.hidden = true;
 }
