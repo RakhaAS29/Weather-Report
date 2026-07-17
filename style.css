@@ -93,7 +93,7 @@ body[data-weather="fog"] .sky__body {
 
 /* ---------- Layout ---------- */
 .app {
-  max-width: 640px;
+  max-width: 900px;
   margin: 0 auto;
   padding: var(--space-3) var(--space-2) var(--space-4);
   min-height: 100vh;
@@ -123,7 +123,8 @@ body[data-weather="fog"] .sky__body {
    Header becomes a centered hero: wordmark stacked above
    a wider search bar, vertically centered in the viewport. */
 body[data-layout="landing"] .app {
-  justify-content: center;
+  justify-content: flex-start;
+  padding-top: var(--space-4);
 }
 
 body[data-layout="landing"] .app__header {
@@ -148,6 +149,11 @@ body[data-layout="landing"] .search__input {
 
 body[data-layout="landing"] .app__footer {
   display: none;
+}
+
+body[data-layout="landing"] .state {
+  flex: 0 0 auto;
+  padding: var(--space-2) var(--space-2) 0;
 }
 
 /* ---------- Results layout ----------
@@ -207,6 +213,61 @@ body[data-layout="results"] .app__header {
 .search__input:focus-visible {
   outline: 2px solid var(--signal);
   outline-offset: 2px;
+}
+
+/* ---------- Autocomplete suggestions ---------- */
+.search-wrap {
+  position: relative;
+  width: fit-content;
+}
+
+body[data-layout="landing"] .search-wrap {
+  width: min(100%, 22rem);
+}
+
+.suggestions {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  left: 0;
+  right: 0;
+  margin: 0;
+  padding: 0.4rem;
+  list-style: none;
+  background: rgba(16, 19, 26, 0.72);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  backdrop-filter: blur(14px);
+  box-shadow: 0 18px 40px rgba(8, 10, 16, 0.4);
+  z-index: 5;
+  max-height: 15rem;
+  overflow-y: auto;
+}
+
+.suggestions__item {
+  padding: 0.55rem 0.75rem;
+  border-radius: 10px;
+  font-size: 0.82rem;
+  cursor: pointer;
+  color: var(--cloud);
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-1);
+}
+
+.suggestions__item .place {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.suggestions__item .region {
+  color: var(--mist);
+  flex-shrink: 0;
+}
+
+.suggestions__item:hover,
+.suggestions__item[aria-selected="true"] {
+  background: rgba(245, 243, 238, 0.14);
 }
 
 /* ---------- States ---------- */
@@ -368,6 +429,62 @@ body[data-layout="results"] .app__header {
 .forecast__day-temp .lo {
   color: var(--mist);
   font-size: 0.85rem;
+}
+
+/* ---------- Highlights (major-city snapshot) ----------
+   On landing, this row is pushed to the bottom of the viewport
+   via margin-top: auto; once results are showing, it just sits
+   in normal flow below the weather card. */
+.highlights {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: var(--space-2);
+  width: 100%;
+  margin-top: var(--space-4);
+}
+
+body[data-layout="landing"] .highlights {
+  margin-top: auto;
+  padding-top: var(--space-4);
+}
+
+.highlight-card {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: var(--space-3) var(--space-2);
+  text-align: center;
+}
+
+.highlight-card__city {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--mist);
+  margin: 0 0 var(--space-1);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.highlight-card__icon {
+  width: 48px;
+  height: 48px;
+  display: block;
+  margin: 0 auto;
+}
+
+.highlight-card__temp {
+  font-family: var(--font-display);
+  font-size: 2.25rem;
+  margin: var(--space-1) 0 0;
+}
+
+.highlight-card__meta {
+  font-size: 0.75rem;
+  color: var(--mist);
+  margin: var(--space-2) 0 0;
+  line-height: 1.4;
 }
 
 /* ---------- Footer ---------- */
